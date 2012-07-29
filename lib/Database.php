@@ -4,27 +4,26 @@
  * Design Pattern: Singleton
 */
 class Database {
-  // class Database extends Zend_Db_Adapter_Pdo_Mysql {
   private static $_db;
   private $conn;
   private $_inTransaction;
 
-  public function __construct($user, $password = '', $host='localhost') {
+  public function __construct() {
     if (Database::$_db) {
-      throw new Exception("use GetInstance method");
+      throw new Exception("This is a singleton class, use GetInstance method instead");
     }
     
-    $conn = mysql_connect("localhost","peter","abc123");
+    $cfg = Config::getInstance();
+    $conn = mysql_connect($cfg->host, $cfg->username, $cfg->password);
     if (!$conn) {
       throw new Exception('Could not connect: ' . mysql_error());
     }
-    mysql_select_db("tiwtter_track", $conn);   
+    mysql_select_db($cfg->dbname, $conn);   
   }
 
   public static function getInstance() {
     if (Database::$_db == null) {
-      //$env = Environment::getInstance();
-      Database::$_db = new Database("tiwtter_track", "tiwtter_track");
+      Database::$_db = new Database();
     }
     return Database::$_db;
   }
@@ -87,7 +86,7 @@ class Database {
   }
   
   public function execute($sql) {
-    return execute($sql, true)
+    return $this->query($sql, true);
   }
 }
 

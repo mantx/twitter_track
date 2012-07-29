@@ -17,19 +17,19 @@ if (true) {
 require_once "Autoload.php";
 
 class Config {
-  private static $_config;
+  private static $cfg;
   private $_values;
 
   public static function getInstance() {
-    if (!Config::$_config) {
-      Config::$_config = new Config();
+    if (!Config::$cfg) {
+      Config::$cfg = new Config();
     }
-    return Config::$_config;
+    return Config::$cfg;
   }
 
   private function __construct() {
-    if (Config::$_config) {
-      throw new Exception("");
+    if (Config::$cfg) {
+      throw new Exception("This is a singleton class, use GetInstance method instead");
     }
     $this->loadEnv();
   }
@@ -54,11 +54,12 @@ class Config {
     }
   }
 
-  private function _loadEnv() {
+  private function loadEnv() {
     $env = array();
+    $db = array();
     require_once('environment.inc');
-    require_once('database' . DS . $env->mode . '.inc');
-    $this->_values = $env;
+    require_once('database' . DS . $env['mode'] . '.inc');
+    $this->_values = array_merge($env, $db);
     //error_reporting($this->_values['error_reporting']);
   }
 
