@@ -1,0 +1,5 @@
+<?php
+
+$env['mode'] = 'development';
+
+?>
