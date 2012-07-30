@@ -9,7 +9,6 @@ if (true) {
   $paths[] = APP_ROOT . DS . 'app' . DS . 'models';
   $paths[] = APP_ROOT . DS . 'lib';
   $paths[] = APP_ROOT . DS . 'vendor';
-  //$paths[] = APP_ROOT . DS . 'vendor' . DS . 'php-twitter';
 
   $appPath = implode(PS, $paths);
   set_include_path($appPath . PS . get_include_path());
