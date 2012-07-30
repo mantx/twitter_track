@@ -1,50 +1,48 @@
-<PRE>
+<body>
+  
+<div class="module profile-nav wtf-module js-similar-to-module has-content">
 
-{* bold and title are read from the config file *}
-{if #bold#}<b>{/if}
-{* capitalize the first letters of each word of the title *}
-Title: {#title#|capitalize}
-{if #bold#}</b>{/if}
+  <ul>
+    <li class="js-sidenav-link" data-name="similarTo">
+      <a class="list-link" href="">
+          The list of Twitter Users
+        <i class="chev-right"></i>
+      </a>
+    </li>
+  </ul>
 
-The current date and time is {$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}
+  <div class="flex-module">
+    <div class="js-recommended-followers dashboard-user-recommendations flex-module-inner" data-section-id="wtf">
 
-The value of global assigned variable $SCRIPT_NAME is {$SCRIPT_NAME}
+    {section name=row loop=$users}
+    <div class="js-account-summary account-summary js-actionable-user account-summary-small" data-user-id="{$users[row].userid}" data-feedback-token="1">
+      <div class="content">
+        <a class="account-group js-recommend-link js-user-profile-link user-thumb" href="" data-user-id="{$users[row].userid}">
+          
+          <img class="avatar js-action-profile-avatar size32" src="" alt="">
+          <span class="account-group-inner js-action-profile-name" data-user-id="21198997">
+            <b class="fullname">{$users[row].username}</b>
+            <span>?</span>
+            
+              <span class="username"><s>@</s><span class="js-username">{$users[row].userid}</span></span>
+          </span>
+        </a>
+    
+        <small class="metadata social-context">
+            
+          </small>
+    
+          <span class="js-follow-state follow-state">
+          </span>
+    </div>
+    {/section}  
+    
+</div>
 
-Example of accessing server environment variable SERVER_NAME: {$smarty.server.SERVER_NAME}
 
+    </div>
+  </div>
 
-testing strip tags
-{strip}
-<table border=0>
-	<tr>
-		<td>
-			<A HREF="{$SCRIPT_NAME}">
-			<font color="red">This is a  test     </font>
-			</A>
-		</td>
-	</tr>
-</table>
-{/strip}
+</div>
 
-</PRE>
-
-This is an example of the html_select_date function:
-
-<form>
-{html_select_date start_year=1998 end_year=2010}
-</form>
-
-This is an example of the html_select_time function:
-
-<form>
-{html_select_time use_24_hours=false}
-</form>
-
-This is an example of the html_options function:
-
-<form>
-<select name=states>
-{html_options values=$option_values selected=$option_selected output=$option_output}
-</select>
-</form>
-
+</body>

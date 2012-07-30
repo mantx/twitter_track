@@ -2,6 +2,7 @@ use twitter_track;
 
 CREATE TABLE IF NOT EXISTS twitter_user (
          id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+         userid VARCHAR(40) NOT NULL UNIQUE,
          username VARCHAR(40) NOT NULL UNIQUE,
          description VARCHAR(200)
        ) TYPE=innodb;

@@ -34,7 +34,7 @@ class Smarty_Template extends Smarty {
   }
 
   public function setData($data) {
-    $this->assignByRef('data', $data);
+    $this->assign($data);
   }
 }
 ?>
