@@ -1,0 +1,22 @@
+ DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+
+############################################
+## enable rewrites
+
+    Options +FollowSymLinks
+    RewriteEngine on
+
+    #RewriteBase /
+
+
+    RewriteRule assets/images/(.*) app/assets/images/$1 [L]
+    RewriteRule assets/css/(.*) app/assets/css/$1 [L]
+    RewriteRule assets/js/(.*) app/assets/js/$1 [L]
+    #RewriteCond %{REQUEST_URI} !^/(css|js|images)/
+
+    # rewrite everything else to index.php
+    RewriteRule .* index.php [L]
+</IfModule>
+
