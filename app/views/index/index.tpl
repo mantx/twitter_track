@@ -1,48 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Twitter Tracker</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+</head>
+
 <body>
-  
-<div class="module profile-nav wtf-module js-similar-to-module has-content">
 
-  <ul>
-    <li class="js-sidenav-link" data-name="similarTo">
-      <a class="list-link" href="">
-          The list of Twitter Users
-        <i class="chev-right"></i>
-      </a>
-    </li>
-  </ul>
-
-  <div class="flex-module">
-    <div class="js-recommended-followers dashboard-user-recommendations flex-module-inner" data-section-id="wtf">
-
-    {section name=row loop=$users}
-    <div class="js-account-summary account-summary js-actionable-user account-summary-small" data-user-id="{$users[row].userid}" data-feedback-token="1">
-      <div class="content">
-        <a class="account-group js-recommend-link js-user-profile-link user-thumb" href="" data-user-id="{$users[row].userid}">
-          
-          <img class="avatar js-action-profile-avatar size32" src="" alt="">
-          <span class="account-group-inner js-action-profile-name" data-user-id="21198997">
-            <b class="fullname">{$users[row].username}</b>
-            <span>?</span>
-            
+	<div id="header">
+		<h1>Twitter Tracker</h1>
+	</div>
+	
+	<div id="content">
+		<div id="sidebar">
+			<ul>
+        {section name=row loop=$users}
+          <div class="content">
+            <a class="user-tweet-link user-thumb" href="?user={$users[row].userid}">
               <span class="username"><s>@</s><span class="js-username">{$users[row].userid}</span></span>
-          </span>
-        </a>
-    
-        <small class="metadata social-context">
-            
-          </small>
-    
-          <span class="js-follow-state follow-state">
-          </span>
-    </div>
-    {/section}  
-    
-</div>
-
-
-    </div>
-  </div>
-
-</div>
+            </a>
+          </div>
+        {/section}
+			</ul>
+		</div>
+		
+		<div id="main-content">
+      <h1>{$tweet.user}</h1> <br/>
+      <ul>
+      {section name=row loop=$tweet.tweets}
+        <li>{$tweet.tweets[row].text}</li>
+      {/section}
+		</div>
+		
+		<div class="clear"></div>
+	</div>
 
 </body>
+
+</html>

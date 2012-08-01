@@ -66,7 +66,7 @@ class Database {
     $time2 = microtime();
     $interval = ($time2 - $time) * 1000;
     if ($interval > 50) {
-      print("SLOW: " . $interval . " msec: " . $sql);
+      error_log("SLOW: " . $interval . " msec: " . $sql);
     }
     
     //check if there is an error
